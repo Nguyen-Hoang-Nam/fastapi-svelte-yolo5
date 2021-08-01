@@ -1,40 +1,40 @@
 <script lang="ts">
-  import Dropzone from "svelte-file-dropzone";
+	export let uploadUrl: string = "";
+	export let showImage: boolean = false;
+	export let coordinate: object = {};
 
-  export let uploadUrl: string = "";
-  export let showImage: boolean = false;
-  export let resultImage: string;
+	let canvas;
+	let width: number;
+	let height;
 </script>
 
+<svelte:window bind:scrollX={width} />
+
 <div class="display">
-  <img
-    src={uploadUrl}
-    class={showImage ? "display-image block" : "hidden"}
-    alt="Upload file"
-  />
-  <img
-    src={`http://localhost:8000/static/${resultImage}.png`}
-    class={showImage ? "display-image block" : "hidden"}
-    alt="Upload file"
-  />
+	<img
+		src={uploadUrl}
+		class={showImage ? "display-image block" : "hidden"}
+		alt="Upload file"
+	/>
+	<canvas />
 </div>
 
 <style>
-  .display-image {
-    max-width: 50%;
-  }
+	.display-image {
+		max-width: 50%;
+	}
 
-  .display {
-    display: flex;
-    justify-content: center;
-    column-gap: 40px;
-  }
+	.display {
+		display: flex;
+		justify-content: space-between;
+		column-gap: 40px;
+	}
 
-  .block {
-    display: block;
-  }
+	.block {
+		display: block;
+	}
 
-  .hidden {
-    display: none;
-  }
+	.hidden {
+		display: none;
+	}
 </style>
